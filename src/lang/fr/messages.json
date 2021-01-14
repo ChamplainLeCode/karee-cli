@@ -1,0 +1,21 @@
+{
+    "installer": {
+        "android": {
+            "support": ["java", "kotlin"]
+        },
+        "ios": {
+            "support": ["objc", "swift"]
+            
+        },
+        "description": "Salut! Mon application Flutter utilise la librairie Karee",
+        "organization": "com.karee.app",
+        "questions": {
+            "appName": "Quel est le nom de ton application?",
+            "version": "Quelle est la version de cette application?",
+            "description": "Veux-tu fournir une description pour cette application?",
+            "organization": "Quel est l'identifiant de domaine de ton organisation?",
+            "androidSupport": "Quel langage support veux-tu utiliser pour Android?",
+            "iosSupport": "Quel langage support veux-tu utiliser pour IOS?"
+        }
+    }
+}
