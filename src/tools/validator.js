@@ -6,8 +6,11 @@ class Validator{
             return val
         return null
     }
-    static version(val = ''){
-        if(val.length > 0 && val.match(/^((\d+\.)?(\d+\.)?(\*|\d+)((\-|)[a-zA-Z0-9]{1,10}){0,1})/)?.join('') === val)
+    static validateVersion(val = ''){
+        console.log(/^\d+\.\d+\.\d+([-]{0,1}[a-zA-Z0-9]+)*/.compile().test(val));
+        let match = val.match(/^\d+\.\d+\.\d+[-]{0,1}[a-zA-Z0-9]{1,15}/)?.join('')
+        console.log('=> '+match)
+        if(val.length > 0 && match === val)
             return val
         return null
     }

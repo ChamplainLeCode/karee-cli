@@ -26,7 +26,7 @@ class KareeInstaller{
             this.settings.appName = validator.validateName(await io.getText(__karee_helper.install.questions.appName, path.basename(__dirname)))
         }while(this.settings.appName == null)
         do{
-            this.settings.version = await io.getText(__karee_helper.install.questions.version, __karee_helper.install.version)
+            this.settings.version = validator.validateVersion(await io.getText(__karee_helper.install.questions.version, __karee_helper.install.version))
         }while(this.settings.version == null)
         do{
             this.settings.description = await io.getText(__karee_helper.install.questions.description, __karee_helper.install.description)
