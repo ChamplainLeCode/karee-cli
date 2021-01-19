@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/ChamplainLeCode/kari-cli#readme",
   "dependencies": {
+    "cli-spinner": "^0.2.10",
+    "fs-extra": "^9.0.1",
     "inquirer": "^7.3.3",
     "node-cmd": "^4.0.0"
   }

@@ -6,4 +6,5 @@ module.exports = class KareeInstallerMeta {
     iosSupport = 'swift';
     version = '1.0.0';
     description = null;
+    organization = null
 }

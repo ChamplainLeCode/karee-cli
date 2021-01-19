@@ -1,5 +1,6 @@
 const r = require('inquirer')
 const fs = require('fs');
+const fs_extra = require('fs-extra')
 
 class IO {
 
@@ -39,6 +40,18 @@ class IO {
         if(filename == null)
             new Error('File name cannot be null');
         return JSON.parse(fs.readFileSync(filename,  'utf-8').toString());
+    }
+
+    writeFile(content, filename){
+        fs.writeFileSync(filename, content, 'utf-8');
+    }
+
+    move(oldPath, newPath){
+        fs_extra.moveSync(oldPath, newPath)
+    }
+
+    delete(path){
+        fs.rmdirSync(path, {recursive: true})
     }
 
 }
