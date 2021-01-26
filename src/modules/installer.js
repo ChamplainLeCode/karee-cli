@@ -6,9 +6,9 @@ const cmd = require('node-cmd')
 var Spinner = require('cli-spinner').Spinner;
  
 const KareeInstallerMeta = require('../models/karee_installer_meta')
-const {__karee_helper} = require('../models/karee_config')
+const {__karee_helper, CommandRunner} = require('../models/karee_config')
 
-class KareeInstaller{
+class KareeInstaller extends CommandRunner{
 
     settings = new KareeInstallerMeta
     helper = __karee_helper
@@ -19,6 +19,11 @@ class KareeInstaller{
     //     this.helper = 
     // }
 
+    // async launch(){
+    //     await this.install({
+    //         callback: (status) => process.exit(status)
+    //     })
+    // }
 
 
     async install(options = {callback: (status = 0) => {}}) {

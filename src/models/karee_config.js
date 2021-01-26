@@ -52,4 +52,10 @@ class KareeHelper{
 
 const __karee_helper = new KareeHelper()
 
-module.exports = {__karee_helper, __config};
+class CommandRunner {
+    launch(){
+        throw 'Not yet implements'
+    }
+}
+
+module.exports = {__karee_helper, __config, CommandRunner};
