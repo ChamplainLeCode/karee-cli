@@ -6,7 +6,7 @@ const cmd = require('node-cmd')
 var Spinner = require('cli-spinner').Spinner;
  
 const KareeInstallerMeta = require('../models/karee_installer_meta')
-const {__karee_helper, CommandRunner} = require('../models/karee_config')
+const {__karee_helper, CommandRunner, KareeProjectConfig} = require('../models/karee_config')
 
 class KareeInstaller extends CommandRunner{
 
@@ -148,6 +148,18 @@ class KareeInstaller extends CommandRunner{
                 `# see https://flutter.dev/custom-fonts/#from-packages\n`+
                 `#`
                 , `pubspec.yaml`)
+
+                /**
+                 * On définit le fichier de configuration de karee
+                 */
+
+                io.writeFile(
+                    JSON.stringify({
+                        appName: this.settings.appName,
+                        config: this.settings
+                    }),
+                    KareeProjectConfig.__file
+                )
                 spinner.stop(false)
                 console.log('\n')
                 

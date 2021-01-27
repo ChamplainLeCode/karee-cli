@@ -1,0 +1,23 @@
+import 'package:flutter/material.dart';
+import 'package:$appName/core/core.dart' show Screen;
+
+/// Generated Karee Screen
+/// @email champlainmarius20@gmail.com
+/// @github ChamplainLeCode
+///
+///
+///
+/// `$classNameScreen` is set as Screen with name `$name`
+@Screen("$name")
+class $classNameScreen extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Container(
+      child: Center(
+          child: Text('$classNameScreen works')
+      )
+    );
+  }
+}

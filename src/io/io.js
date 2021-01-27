@@ -1,6 +1,7 @@
 const r = require('inquirer')
 const fs = require('fs');
-const fs_extra = require('fs-extra')
+const fs_extra = require('fs-extra');
+const exception = require('../tools/exception');
 
 class IO {
 
@@ -35,15 +36,23 @@ class IO {
         return answer.value;
     }
 
-    readFile(filename = null){
+    readFile(filename = null, isJson = true){
 
         if(filename == null)
-            new Error('File name cannot be null');
-        return JSON.parse(fs.readFileSync(filename,  'utf-8').toString());
+            exception.log('File name cannot be null')
+        if(isJson)
+            return JSON.parse(fs.readFileSync(filename,  'utf-8').toString())
+        return fs.readFileSync(filename, 'utf-8').toString()
     }
 
     writeFile(content, filename){
         fs.writeFileSync(filename, content, 'utf-8');
+    }
+
+    exists(filename = null){
+        if(filename == null)
+            return false;
+        return fs.existsSync(filename);
     }
 
     move(oldPath, newPath){
@@ -52,6 +61,18 @@ class IO {
 
     delete(path){
         fs.rmdirSync(path, {recursive: true})
+    }
+
+    projectFile(localFilePath){
+        return `${__dirname}/../${localFilePath}`
+    }
+
+    createDir(path = null){
+        if(fs.existsSync(path))
+            return path;
+        if(path == null)
+            return ''
+        return fs.mkdirSync(path, { recursive: true})
     }
 
 }

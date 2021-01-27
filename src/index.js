@@ -4,8 +4,8 @@
 
 // const yargs = require('yargs');
 
-// const installer = require('./modules/installer')
-// const genScreen = require('./modules/screen_generator');
+const installer = require('./modules/installer')
+const generator = new (require('./modules/generator')).KareeGenerator;
 
 
 // commander.use('create', installer)
@@ -40,7 +40,7 @@
 //             option: {
 //                 stateful: {
 //                     description: ' Generate a screen that extends Stateful Widget',
-//                     alias: 'stf'
+//                     alias: 'f'
 //                 }
 //             }
 //         }
@@ -52,7 +52,17 @@
 //     .argv;
 
 const argv = require('yargs/yargs')(process.argv.slice(2))
-        
+
+            .command({
+                command: '\x1b[33m\x1b[1mcreate\x1b[0m',
+                aliases: ['create'],
+                describe: 'Create a new Flutter projet that using MVC Pattern based on Karee\n\n',
+                handler: (argv) => {
+                    installer.install({
+                        callback: (status) => process.exit(status)
+                    })
+                }, 
+            })
             .command({
                 command: '\x1b[33m\x1b[1mbuild\x1b[0m',
                 aliases: ['build','b'],
@@ -61,21 +71,24 @@ const argv = require('yargs/yargs')(process.argv.slice(2))
                 //     console.log(`setting key = ${argv.className}  value = ${argv.value} type = ${argv.type}`)
                 // }, 
             }).command({
-                command: '\x1b[33m\x1b[1mgenerate\x1b[0m \x1b[34m\x1b[1m<className>\x1b[0m',
+                command: '\x1b[33m\x1b[1mgenerate\x1b[0m [--options] \x1b[34m\x1b[1m<className>\x1b[0m',
                 aliases: ['generate', 'g'],
                 describe: '\
                         Generate an item. Items that can be generate are \x1b[32m\x1b[1mscreen\x1b[0m and \x1b[32m\x1b[1mcontroller\x1b[0m\n\n\
                         🏉 To generate a screen add \x1b[35m\x1b[1m--screen\x1b[0m or \x1b[35m\x1b[1m-s\x1b[0m option\n\
                         ---👍 add the path where to generate your screen from \x1b[1mapp/screens/\x1b[0m directory with \x1b[35m\x1b[1m--path\x1b[0m or \x1b[35m\x1b[1m-p\x1b[0m.\n\
                         ---👍 After setting up path you have to define the name of your screen with \x1b[35m\x1b[1m--name\x1b[0m or \x1b[35m\x1b[1m-n\x1b[0m option\n\
-                        ---👍 Finally indicate the type of Widget your screen extends from. \x1b[35m\x1b[1m--stateful\x1b[0m or \x1b[35m\x1b[1m-stf\x1b[0m for Stateful Widget or \x1b[35m\x1b[1m--stateless\x1b[0m or \x1b[35m\x1b[1m-stl\x1b[0m for Stateless\n\n\
+                        ---👍 Finally indicate the type of Widget your screen extends from. \x1b[35m\x1b[1m--stateful\x1b[0m or \x1b[35m\x1b[1m-f\x1b[0m for Stateful Widget or \x1b[35m\x1b[1m--stateless\x1b[0m or \x1b[35m\x1b[1m-l\x1b[0m for Stateless\n\n\
                         🏉 To Generate a controller add \x1b[35m\x1b[1m--controller\x1b[0m or \x1b[35m\x1b[1m-c\x1b[0m option\n\
                         ---👍 add the path where to generate your screen from \x1b[1mapp/controllers/\x1b[0m directory with \x1b[35m\x1b[1m--path\x1b[0m or \x1b[35m\x1b[1m-p\x1b[0m.\n\n',
-                // handler: (argv) => {
-                //     console.log(`setting key = ${argv.className}  value = ${argv.value} type = ${argv.type}`)
-                // }, 
+                handler: (argv) => {
+                    //console.log(argv)
+                    generator.generate({
+                        callback: (status) => exit(status),
+                        options: argv
+                    })
                 }
-            )
+            })
             .command({
                 command: '\x1b[33m\x1b[1msource\x1b[0m',
                 aliases: ['source','s'],
@@ -88,26 +101,35 @@ const argv = require('yargs/yargs')(process.argv.slice(2))
                 controller: {
                     alias: 'c',
                     describe: 'This option is used with generate command, it means you want to generate a controller',
+                    nargs: 0
+                },
+                class: {
+                    describe: 'This option is used with generate command, it means you want to generate a controller',
                 },
                 screen: {
                     alias: 's',
                     describe: 'Used with generate command where type is screen, it indicates you want to generate a screen',
+                    nargs: 0
                 },
                 stateless: {
-                    alias: 'stl',
-                    describe: 'This indicate to generate command that you want your screen extends Flutter Stateful Widget'
+                    alias: 'l',
+                    describe: 'This indicate to generate command that you want your screen extends Flutter Stateless Widget',
+                    nargs: 0
                 },
                 stateful: {
-                    alias: 'stf',
-                    describe: 'This indicate to generate command that you want your screen extends Flutter Stateless Widget'
+                    alias: 'f',
+                    describe: 'This indicate to generate command that you want your screen extends Flutter Stateful Widget',
+                    nargs: 0
                 },
                 path: {
                     alias: 'p',
                     describe: 'The path at where to generate screen or controller',
+                    nargs: 1
                 },
                 name: {
                     alias: 'n',
                     describe: 'The name of screen that should be generate',
+                    nargs: 1
                 }
             })
             // provide a minimum demand and a minimum demand message
@@ -115,4 +137,4 @@ const argv = require('yargs/yargs')(process.argv.slice(2))
             .help()
             .argv
 
-console.log(argv);
+// console.log(argv);

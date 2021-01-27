@@ -1,4 +1,5 @@
 const io = require('../io/io');
+const exception = require('../tools/exception')
 
 
 class KareeConfig {
@@ -42,6 +43,32 @@ class KareeInstallHelper{
     }
 }
 
+class KareeProjectConfig{
+    
+    appName =  { supports: [] }
+    settings =      { supports: [] }
+
+    static __file = 'karee_config.json'
+    static __template_controller = 'templates/controller.template'
+    static __template_stf_screen = 'templates/screen_stf.template'
+    static __template_stl_screen = 'templates/screen_stl.template'
+
+    
+    constructor(){
+        this.load()
+    }
+
+    load (){
+        if(io.exists(KareeProjectConfig.__file)){
+            let json = io.readFile(KareeProjectConfig.__file)
+            this.appName = json.appName
+            this.settings = json.config
+        }else{
+            exception.notKareeProject();
+        }
+    }
+}
+
 __json_helper = io.readFile(`${__dirname}/../lang/${__config.lang}/messages.json`)
 
 class KareeHelper{
@@ -58,4 +85,4 @@ class CommandRunner {
     }
 }
 
-module.exports = {__karee_helper, __config, CommandRunner};
+module.exports = {__karee_helper, __config, CommandRunner, KareeProjectConfig};

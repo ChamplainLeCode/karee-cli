@@ -1,0 +1,21 @@
+import 'package:$appName/core/core.dart';
+
+
+/// Generated Karee Controller
+/// @email champlainmarius20@gmail.com
+/// @github ChamplainLeCode
+///
+///
+///
+///
+/// `$className` is set as Controller
+@Controller
+class $classNameController{
+   
+   
+  String index(){
+
+      return '$classNameController is ready to use';
+
+  }
+}
