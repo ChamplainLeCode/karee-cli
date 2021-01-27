@@ -15,6 +15,7 @@ function underscoreToCambel(name = '') {
     let response = '';
     for (let index = 0; index < name.length; index++) {
         let char = name.charAt(index)
+        char = index == 0 && !isUpper(char) ? char.toUpperCase() : char
         if(char == '_'){
             response = response+(index +1 < name.length ? name.charAt(index+1).toUpperCase() : '')
             index++

@@ -9,7 +9,7 @@ class KareeException {
     }
 
     log(msg){
-        console.log(`\n${msg}\n`)
+        console.log(`\n\x1b[31m\x1b[1m${msg}\x1b[0m\n`)
         exit(18)
     }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:$appName/core/core.dart' show Screen;
+import 'components/congrat_card.dart';
 
 /// Generated Karee Screen
 /// @email champlainmarius20@gmail.com
@@ -14,9 +15,10 @@ class $classNameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Container(
-      child: Center(
-          child: Text('$classNameScreen works')
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+          child: CongratCard()
       )
     );
   }

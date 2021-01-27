@@ -5,8 +5,8 @@
 // const yargs = require('yargs');
 
 const installer = require('./modules/installer')
-const generator = new (require('./modules/generator')).KareeGenerator;
-
+const KareeGenerator = require('./modules/generator');
+const { KareeSourceGen } = require('./modules/run_build')
 
 // commander.use('create', installer)
 // commander.use('generate', genScreen)
@@ -83,6 +83,7 @@ const argv = require('yargs/yargs')(process.argv.slice(2))
                         ---👍 add the path where to generate your screen from \x1b[1mapp/controllers/\x1b[0m directory with \x1b[35m\x1b[1m--path\x1b[0m or \x1b[35m\x1b[1m-p\x1b[0m.\n\n',
                 handler: (argv) => {
                     //console.log(argv)
+                    let generator = new KareeGenerator();
                     generator.generate({
                         callback: (status) => exit(status),
                         options: argv
@@ -93,9 +94,10 @@ const argv = require('yargs/yargs')(process.argv.slice(2))
                 command: '\x1b[33m\x1b[1msource\x1b[0m',
                 aliases: ['source','s'],
                 describe: 'This command help you to generate additionals files used by Karee when you want to run your project\n\n',
-                // handler: (argv) => {
-                //     console.log(`setting key = ${argv.className}  value = ${argv.value} type = ${argv.type}`)
-                // }, 
+                handler: (argv) => {
+                    const sourceGen = new KareeSourceGen()
+                    sourceGen.generateSource()
+                }, 
             })
             .options({
                 controller: {

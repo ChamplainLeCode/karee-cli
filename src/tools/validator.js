@@ -1,3 +1,6 @@
+const KareeGeneratorMeta = require("../models/karee_generator_meta")
+const exception = require("./exception")
+
 class Validator{
 
 
@@ -11,6 +14,38 @@ class Validator{
         if(val.length > 0 && match === val)
             return val
         return null
+    }
+
+    static validateGeneratedController(genConfig = null){
+        if(genConfig == null)
+            exception.log('Fatal error: Fail to load configs')
+        if(genConfig.className === undefined || genConfig.className === null)
+            exception.log('className of controller is required')
+        if(genConfig.path != null && genConfig.path != undefined){
+            if(genConfig.path.startsWith('/'))
+                genConfig.path = genConfig.path.replace('/', '')
+            if( ! genConfig.path.endsWith('/'))
+                genConfig.path = genConfig.path + '/'
+        }else {
+            genConfig.path  = '/'
+        }
+        
+    }
+
+    static validateGeneratedScreen(genConfig = new KareeGeneratorMeta()){
+
+        if(genConfig.className === undefined || genConfig.className === null)
+            exception.log('className of screen is required.')
+        if(genConfig.name === undefined || genConfig.name === null || genConfig.name.length == 0)
+            exception.log('Screen\'s name is required. add option --name <screenName> ')
+        if(genConfig.path != null && genConfig.path != undefined){
+            if(genConfig.path.startsWith('/'))
+                genConfig.path = genConfig.path.replace('/', '')
+            if( ! genConfig.path.endsWith('/'))
+                genConfig.path = genConfig.path + '/'
+        }else {
+            genConfig.path  = '/'
+        }
     }
 }
 
