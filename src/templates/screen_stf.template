@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+import 'package:$appName/core/core.dart' show Screen;
+import 'components/congrat_card.dart';
+
+/// Generated Karee Screen
+/// @email champlainmarius20@gmail.com
+/// @github ChamplainLeCode
+///
+///
+///
+/// `$classNameScreen` is set as Screen with name `$name`
+@Screen("$name")
+class $classNameScreen extends StatefulWidget {
+
+  _$classNameState createState() => new _$classNameState();
+}
+
+class _$classNameState extends State<$classNameScreen> {
+    
+
+  void initState(){
+    // Add your initialize code here
+    super.initState();
+  }
+
+  void dispose(){
+    // add your custom code for disposing all objects
+    super.dispose();
+  }
+    
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+          child: CongratCard()
+      )
+    );
+  }
+}
