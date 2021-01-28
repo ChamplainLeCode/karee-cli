@@ -60,7 +60,6 @@ class IO {
     }
 
     copy(oldPath, newPath){
-        console.log('source '+oldPath+'\ndestin = '+newPath)
         fs_extra.copyFileSync(oldPath, newPath, fs.constants.W_OK)
     }
 

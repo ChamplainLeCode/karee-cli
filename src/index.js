@@ -6,7 +6,8 @@
 
 const installer = require('./modules/installer')
 const KareeGenerator = require('./modules/generator');
-const { KareeSourceGen } = require('./modules/run_build')
+const { KareeSourceGen, KareeBuilder } = require('./modules/run_build');
+const { exit } = require('yargs');
 
 // commander.use('create', installer)
 // commander.use('generate', genScreen)
@@ -67,9 +68,10 @@ const argv = require('yargs/yargs')(process.argv.slice(2))
                 command: '\x1b[33m\x1b[1mbuild\x1b[0m',
                 aliases: ['build','b'],
                 describe: 'The build command help you to build a realease of your application. This use flutter build command\n\n',
-                // handler: (argv) => {
-                //     console.log(`setting key = ${argv.className}  value = ${argv.value} type = ${argv.type}`)
-                // }, 
+                handler: (argv) => {
+                    let kareeRunner = new KareeBuilder()
+                    kareeRunner.build(() => exit(0))
+                }, 
             }).command({
                 command: '\x1b[33m\x1b[1mgenerate\x1b[0m [--options] \x1b[34m\x1b[1m<className>\x1b[0m',
                 aliases: ['generate', 'g'],
@@ -97,6 +99,15 @@ const argv = require('yargs/yargs')(process.argv.slice(2))
                 handler: (argv) => {
                     const sourceGen = new KareeSourceGen()
                     sourceGen.generateSource()
+                }, 
+            })
+            .command({
+                command: '\x1b[33m\x1b[1mrun\x1b[0m',
+                aliases: ['run','r'],
+                describe: 'The run command help you to run  your application. This use flutter run command\n\n',
+                handler: (argv) => {
+                    let kareeRunner = new KareeBuilder()
+                    kareeRunner.run(() => exit(0))
                 }, 
             })
             .options({

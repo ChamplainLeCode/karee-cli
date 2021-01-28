@@ -102,16 +102,14 @@ module.exports = class KareeGenerator{
             .replace('$className', formatter.underscoreToCambel(this.settings.className))
             .replace('$className', formatter.underscoreToCambel(this.settings.className))
             .replace('$className', formatter.underscoreToCambel(this.settings.className))
-            .replace('$name', formatter.underscoreToCambel(this.settings.name))
-            .replace('$name', formatter.underscoreToCambel(this.settings.name))
+            .replace('$name', formatter.cambelToUnderscore(this.settings.name))
+            .replace('$name', formatter.cambelToUnderscore(this.settings.name))
 
         if(this.settings.isStatefull)
             template = template
                 .replace('$className', formatter.underscoreToCambel(this.settings.className))
                 .replace('$className', formatter.underscoreToCambel(this.settings.className))
                 .replace('$className', formatter.underscoreToCambel(this.settings.className))
-                .replace('$className', formatter.underscoreToCambel(this.settings.className))
-        
         /**
          * On Crée l'arborescence indiqué par l'option --path où ajouter l'écran
          */
