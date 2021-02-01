@@ -8,6 +8,8 @@ const installer = require('./modules/installer')
 const KareeGenerator = require('./modules/generator');
 const { KareeSourceGen, KareeBuilder } = require('./modules/run_build');
 const { exit } = require('yargs');
+const { __config } = require('./models/karee_config');
+const io = require('./io/io');
 
 // commander.use('create', installer)
 // commander.use('generate', genScreen)
@@ -91,6 +93,21 @@ const argv = require('yargs/yargs')(process.argv.slice(2))
                         options: argv
                     })
                 }
+            })
+            .command({
+                command: '\x1b[33m\x1b[1mlanguage\x1b[0m',
+                aliases: ['lang'],
+                describe: 'Set up the language of your CLI\n\n',
+                handler: async (argv) => {
+                    var lang = await io
+                        .getList('Setup the language of karee CLI', ['French (fr)', 'English(en)'])
+                    if(lang.indexOf('(en)') > -1){
+                        __config.json.lang = "en";
+                    }else{
+                        __config.json.lang = "fr";
+                    }
+                    __config.export()
+                }, 
             })
             .command({
                 command: '\x1b[33m\x1b[1msource\x1b[0m',

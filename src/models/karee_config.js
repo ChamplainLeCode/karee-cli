@@ -3,10 +3,16 @@ const exception = require('../tools/exception')
 
 
 class KareeConfig {
-    lang = null;
+    lang = null
+    json = {}
 
     constructor(json){
-        this.lang = json.lang;
+        this.lang = json.lang
+        this.json = json
+    }
+
+    export(){
+        io.writeFile(JSON.stringify(this.json), `${__dirname}/../config/config.json`)
     }
 }
 
