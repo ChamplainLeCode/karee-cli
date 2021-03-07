@@ -12,14 +12,24 @@
 </table>
 
 # Karee
-Let's build your first Flutter Applications using MVC Design Pattern. Karee and Karee-CLI to help your to 
- * Organize your project's files and folders
- * Manage your files and classes names
- * Manage your application's Navigation with custom constants
- * Generate all your stateless and stateful screens with names
- * Generate all your controllers
- * Organize your application routes with various structure
- * Generate additionals source
+Let's build your first Flutter Applications using MVC Design Pattern.
+
+To take full advantages of Karee you should know what it offers you
+- Karee-CLI a command line interface that help you to manage Karee
+- Karee library a dart lib very useful to
+  - Organize your project's files and folders
+  - Manage your files and classes names
+  - Manage your application's Navigation with custom constants
+  - Generate all your stateless and stateful screens with names
+  - Generate all your controllers
+  - Organize your application routes with various structure
+  - Generate additionals source
+
+With Karee you should not care because.
+
+- Karee works with `No class Inheritance` on your controller or screen
+- Karee use the powerful of `@Annotations` like `@Controller` and `@Screen`
+- Karee is fast
 
 # Get Started with `Karee` and `Karee-CLI`
 
@@ -224,3 +234,12 @@ class  AuthenticationController {
 		</td>
 	</tr>
 </table>
+
+
+## Contributing
+
+Thank you for considering contributing to the Karee library! The contribution guide can be found in the [Karee documentation]().
+
+## License
+
+Karee Library is open-sourced software licensed under the MIT license.
