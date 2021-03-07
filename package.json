@@ -1,6 +1,6 @@
 {
   "name": "karee",
-  "version": "1.2.0",
+  "version": "1.0.0",
   "description": "The best implementation of MVC Design Pattern when you build your Mobile Application based on Google Flutter Framework",
   "main": "src/index.js",
   "bin": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ChamplainLeCode/kari-cli.git"
+    "url": "git+https://github.com/ChamplainLeCode/karee.git"
   },
   "keywords": [
     "karee",
@@ -24,9 +24,9 @@
   "author": "Champlain N. Bakop",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ChamplainLeCode/kari-cli/issues"
+    "url": "https://github.com/ChamplainLeCode/karee/issues"
   },
-  "homepage": "https://github.com/ChamplainLeCode/kari-cli#readme",
+  "homepage": "https://github.com/ChamplainLeCode/karee#readme",
   "dependencies": {
     "cli-spinner": "^0.2.10",
     "fs-extra": "^9.0.1",
