@@ -1,11 +1,13 @@
 
 <table style="border: 0px">
     <tr style="border: 0px">
-          <td style="border: 0px"> <img src="https://user-images.githubusercontent.com/26502711/106351055-f8692e00-62d9-11eb-8da2-8b0e536b2a4b.png" style="width:250px">
+          <td style="border: 0px"> <img src="https://user-images.githubusercontent.com/26502711/110235889-004c6b80-7f33-11eb-86bd-5e6558dcf4b3.png" style="width:250px">
           </td>
-          <td><img src="https://icons.iconarchive.com/icons/graphicloads/colorful-long-shadow/256/Plus-icon.png"></td>
+          <td><span style="font-size: 50px; font-weight: 900"> +</span></td>
           <td style="border: 0px"> <img src="https://user-images.githubusercontent.com/26502711/106351081-1e8ece00-62da-11eb-84d5-96e2c876f8af.png" style="width:250px">
           </td>
+          <td><span style="font-size: 50px; font-weight: 900"> = </span></td>
+		  <td style="border: 0px"> <img src = "https://user-images.githubusercontent.com/26502711/106351055-f8692e00-62d9-11eb-8da2-8b0e536b2a4b.png"></td>
   </tr>
 </table>
 
