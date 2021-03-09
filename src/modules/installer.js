@@ -104,10 +104,8 @@ class KareeInstaller extends CommandRunner{
                 `   build_runner: any\n`+
                 `   build: '>=0.12.0 <2.0.0'\n`+
                 `   source_gen: ^0.9.0\n`+
-                `   screen_tracker:\n`+
-                `       path: lib/core/screen_tracker/\n`+
-                `   screengen:\n`+
-                `       path: lib/core/screen_tracker/screengen/\n`+
+                `   karee_core: 1.0.0\n`+
+                `   screengen: ^1.0.1\n`+
                 `    \n`+
                 `# For information on the generic Dart part of this file, see the\n`+
                 `# following page: https://dart.dev/tools/pub/pubspec\n\n`+
@@ -190,28 +188,28 @@ class KareeInstaller extends CommandRunner{
                                 callback: () => {
                                     
                                     io.delete(`build.yaml`)
-                                    io.writeFile(
-                                        'targets:\n'+
-                                        '   $default:\n'+
-                                        '       builders:\n'+
-                                        '           screengen|screen_tracker:\n'+
-                                        '               enabled: true\n'+
-                                        'builders:\n'+
-                                        '   screen_tracker:\n'+
-                                        '       target: ":screengen"\n'+
-                                        `       import: "package:${this.settings.appName}/core/screen_tracker/screengen/lib/builder.dart"\n`+
-                                        '       builder_factories: ["screenTracker"]\n'+
-                                        '       build_extensions: {".dart": [".kari"]}\n'+
-                                        '       auto_apply: dependents\n'+
-                                        '       build_to: cache\n'+
-                                        '       applies_builders: ["source_gen|combining_builder"]\n', 'build.yaml'
-                                    )
+                                    // io.writeFile(
+                                    //     'targets:\n'+
+                                    //     '   $default:\n'+
+                                    //     '       builders:\n'+
+                                    //     '           screengen|screen_tracker:\n'+
+                                    //     '               enabled: true\n'+
+                                    //     'builders:\n'+
+                                    //     '   screen_tracker:\n'+
+                                    //     '       target: ":screengen"\n'+
+                                    //     `       import: "package:${this.settings.appName}/core/screen_tracker/screengen/lib/builder.dart"\n`+
+                                    //     '       builder_factories: ["screenTracker"]\n'+
+                                    //     '       build_extensions: {".dart": [".kari"]}\n'+
+                                    //     '       auto_apply: dependents\n'+
+                                    //     '       build_to: cache\n'+
+                                    //     '       applies_builders: ["source_gen|combining_builder"]\n', 'build.yaml'
+                                    // )
 
                                     /**
                                      * On revient à la racine du projet créé
                                      * pour générer la configuration de build 
                                      */
-                                    process.chdir(`..${path.sep}..${path.sep}..${path.sep}..`)
+                                    // process.chdir(`..${path.sep}..${path.sep}..${path.sep}..`)
                                     io.writeFile(
                                         'targets:\n'+
                                         '   $default:\n'+
@@ -271,13 +269,13 @@ class KareeInstaller extends CommandRunner{
             .on('close', (codePub1, signalPub1)=>{
 
                 if(codePub1 == 0){
-                    if( options.deep ){
-                        this.runPubInTracker({loader: spinner, callback: options?.callback})  
-                    }else{
+                    //if( options.deep ){
+                    //    this.runPubInTracker({loader: spinner, callback: options?.callback})  
+                    //}else{
                         spinner.stop(false)
                         console.log('\n')
                         options.callback?.call()
-                    }                                  
+                    //}                                  
                 }else {
 
                 }

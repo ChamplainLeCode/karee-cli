@@ -36,14 +36,18 @@ With Karee you should not care because.
 - Karee works with `No class Inheritance` on your controller or screen
 - Karee takes advantage of the power of `Annotations`
 
+## Engine
+
+ * NodeJS ^14.10.1
+ * Npm 6.14.8
 
 ## Contributing
 
-Thank you for considering contributing to the Karee library! The contribution guide can be found in the [Karee documentation](./wiki/Contribution-Guide).
+Thank you for considering contributing to the Karee library! The contribution guide can be found in the [Karee documentation](https://github.com/ChamplainLeCode/karee/wiki/Contribution-Guide).
 
 ## Code of Conduct
 
-In order to ensure that the Karee community is welcoming to all, please review and abide by the [Code of Conduct](./wiki/Contribution-Guide#code-of-conduct).
+In order to ensure that the Karee community is welcoming to all, please review and abide by the [Code of Conduct](https://github.com/ChamplainLeCode/karee/wiki/Contribution-Guide#code-of-conduct).
 
 ## License
 
