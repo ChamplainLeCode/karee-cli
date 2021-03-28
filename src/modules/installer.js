@@ -86,13 +86,15 @@ class KareeInstaller extends CommandRunner{
                 `# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html\n`+
                 `version: ${this.settings.version}\n\n`+
                 `environment:\n`+
-                `   sdk: ">=2.3.0 <3.0.0"\n\n`+
+                `   sdk: ">=2.12.0 <3.0.0"\n\n`+
                 `dependencies:\n`+
                 `   flutter:\n`+
                 `       sdk: flutter\n\n`+
                 `# The following adds the Cupertino Icons font to your application.\n`+
                 `# Use with the CupertinoIcons class for iOS style icons.\n`+
                 `   cupertino_icons: any\n\n\n`+
+                `   karee_core: 2.0.0\n`+
+                `   url_launcher: 6.0.0\n\n`+
                 `dev_dependencies:\n`+
                 `   flutter_test:\n`+
                 `       sdk: flutter\n`+
@@ -100,12 +102,11 @@ class KareeInstaller extends CommandRunner{
                 `#\n`+
                 `# Karee additional dependencies\n`+
                 `# \n`+
-                `   reflectable: 2.2.0\n`+
+                `   reflectable: 3.0.1\n`+
                 `   build_runner: any\n`+
-                `   build: '>=0.12.0 <2.0.0'\n`+
-                `   source_gen: ^0.9.0\n`+
-                `   karee_core: 1.0.0\n`+
-                `   screengen: ^1.0.1\n`+
+                `   build: ^2.0.0\n`+
+                `   source_gen: 1.0.0\n`+
+                `   screengen: ^2.0.0\n`+
                 `    \n`+
                 `# For information on the generic Dart part of this file, see the\n`+
                 `# following page: https://dart.dev/tools/pub/pubspec\n\n`+
