@@ -1,11 +1,7 @@
-import 'package:$appName/core/core.dart';
+import 'package:karee/annotations.dart';
 
 
 /// Generated Karee Controller
-/// @email champlainmarius20@gmail.com
-/// @github ChamplainLeCode
-///
-///
 ///
 ///
 /// `$className` is set as Controller

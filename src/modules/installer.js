@@ -13,18 +13,6 @@ class KareeInstaller extends CommandRunner{
     settings = new KareeInstallerMeta
     helper = __karee_helper
 
-    // constructor(){
-    //     this.settings = new KareeInstallerMeta()
-    //     this.config = 
-    //     this.helper = 
-    // }
-
-    // async launch(){
-    //     await this.install({
-    //         callback: (status) => process.exit(status)
-    //     })
-    // }
-
 
     async install(options = {callback: (status = 0) => {}}) {
         do{
@@ -93,20 +81,20 @@ class KareeInstaller extends CommandRunner{
                 `# The following adds the Cupertino Icons font to your application.\n`+
                 `# Use with the CupertinoIcons class for iOS style icons.\n`+
                 `   cupertino_icons: any\n\n\n`+
-                `   karee_core: 2.0.0\n`+
+                `   karee: 2.1.0\n`+
                 `   url_launcher: 6.0.0\n\n`+
+                `   reflectable: ^3.0.1\n`+
                 `dev_dependencies:\n`+
                 `   flutter_test:\n`+
                 `       sdk: flutter\n`+
+                `   karee_injectable_gen: 1.0.1\n`+
                 `    \n`+
                 `#\n`+
                 `# Karee additional dependencies\n`+
                 `# \n`+
-                `   reflectable: 3.0.1\n`+
                 `   build_runner: any\n`+
                 `   build: ^2.0.0\n`+
                 `   source_gen: 1.0.0\n`+
-                `   screengen: ^2.0.0\n`+
                 `    \n`+
                 `# For information on the generic Dart part of this file, see the\n`+
                 `# following page: https://dart.dev/tools/pub/pubspec\n\n`+
@@ -117,9 +105,10 @@ class KareeInstaller extends CommandRunner{
                 `# the material Icons class.\n`+
                 `   uses-material-design: true\n`+
                 `# To add assets to your application, add an assets section, like this:\n`+
-                `# assets:\n`+
-                `#   - images/a_dot_burr.jpeg\n`+
-                `#   - images/a_dot_ham.jpeg\n\n`+
+                `    assets:\n`+
+                `        - resources/config/\n`+
+                `        - resources/l10n/\n`+
+                `        - assets/images/\n`+
                 `# An image asset can refer to one or more resolution-specific "variants", see\n`+
                 `# https://flutter.dev/assets-and-images/#resolution-aware.\n\n`+
               
@@ -166,7 +155,8 @@ class KareeInstaller extends CommandRunner{
                 spinner.setSpinnerString('⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏')
                 spinner.setSpinnerTitle('\x1b[32m\x1b[1mDownloading Karee file\x1b[22m\x1b[0m')
                 spinner.start()
-                cmd.run('git clone https://github.com/ChamplainLeCode/wp_core_kari.git tmp_karee_conf')
+                let currentPath = process.cwd();
+                cmd.run(`git clone https://github.com/ChamplainLeCode/wp_core_kari.git tmp_karee_conf && cd ${process.cwd()}${path.sep}tmp_karee_conf && git reset --hard v1.0.2 && cd ${currentPath}`)
                     .on("close", (code, signalClone) => {
 
                         if(code == 0){
@@ -174,6 +164,7 @@ class KareeInstaller extends CommandRunner{
                             io.delete(`${process.cwd()}${path.sep}test`)
                             io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}lib`, `${process.cwd()}${path.sep}lib`)
                             io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}test`, `${process.cwd()}${path.sep}test`)
+                            io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}resources`, `${process.cwd()}${path.sep}resources`)
                             io.delete('tmp_karee_conf')
 
 
@@ -189,28 +180,6 @@ class KareeInstaller extends CommandRunner{
                                 callback: () => {
                                     
                                     io.delete(`build.yaml`)
-                                    // io.writeFile(
-                                    //     'targets:\n'+
-                                    //     '   $default:\n'+
-                                    //     '       builders:\n'+
-                                    //     '           screengen|screen_tracker:\n'+
-                                    //     '               enabled: true\n'+
-                                    //     'builders:\n'+
-                                    //     '   screen_tracker:\n'+
-                                    //     '       target: ":screengen"\n'+
-                                    //     `       import: "package:${this.settings.appName}/core/screen_tracker/screengen/lib/builder.dart"\n`+
-                                    //     '       builder_factories: ["screenTracker"]\n'+
-                                    //     '       build_extensions: {".dart": [".kari"]}\n'+
-                                    //     '       auto_apply: dependents\n'+
-                                    //     '       build_to: cache\n'+
-                                    //     '       applies_builders: ["source_gen|combining_builder"]\n', 'build.yaml'
-                                    // )
-
-                                    /**
-                                     * On revient à la racine du projet créé
-                                     * pour générer la configuration de build 
-                                     */
-                                    // process.chdir(`..${path.sep}..${path.sep}..${path.sep}..`)
                                     io.writeFile(
                                         'targets:\n'+
                                         '   $default:\n'+

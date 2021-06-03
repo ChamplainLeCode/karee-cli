@@ -11,49 +11,6 @@ const { exit } = require('yargs');
 const { __config } = require('./models/karee_config');
 const io = require('./io/io');
 
-// commander.use('create', installer)
-// commander.use('generate', genScreen)
-
-
-// commander.launch()
-// /**
-//  * Il y a une commande si il y a 3 args aumoins 
-//  */
-// if(process.argv.length > 2){
-//     switch (process.argv[2]) {
-//         case 'create':
-//             installer
-//                 .install({
-//                     callback: (status) => process.exit(status)
-//                 });
-//         default:
-//             break;
-//     }
-// }
-
-// const { alias } = require('yargs');
-// const yargs = require('yargs');
-
-// const argv = yargs(process.argv.slice(2))
-//     .command('create', 'Create a new Flutter project that uses MVC pattern with Karee architecture', {})
-//     .command('generate', 'Generate a new screen or controller in your application', {
-//         screen: {
-//             description: 'Generate a new screen for your apps',
-//             alias: 's',
-//             option: {
-//                 stateful: {
-//                     description: ' Generate a screen that extends Stateful Widget',
-//                     alias: 'f'
-//                 }
-//             }
-//         }
-//     }
-    
-//     )
-//     .help()
-//     // .alias('help', 'h')
-//     .argv;
-
 const argv = require('yargs/yargs')(process.argv.slice(2))
 
             .command({
@@ -162,7 +119,6 @@ const argv = require('yargs/yargs')(process.argv.slice(2))
                     nargs: 1
                 }
             })
-            // provide a minimum demand and a minimum demand message
             .demandCommand(1, 'You need at least one command before moving on')
             .help()
             .argv
