@@ -56,86 +56,14 @@ class KareeInstaller extends CommandRunner{
                 spinner.setSpinnerString('⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏')
                 spinner.start()
                 process.chdir(`${this.settings.appName}`)
-                io.writeFile(
-                `name: ${this.settings.appName}\n`+
-                `description: ${this.settings.description}.\n`+
-                `# The following line prevents the package from being accidentally published to\n`+
-                `# pub.dev using \`pub publish\`. This is preferred for private packages.\n`+
-                `publish_to: 'none' # Remove this line if you wish to publish to pub.dev\n`+
-                `# The following defines the version and build number for your application.\n`+
-                `# A version number is three numbers separated by dots, like 1.2.43\n`+
-                `# followed by an optional build number separated by a +.\n`+
-                `# Both the version and the builder number may be overridden in flutter\n`+
-                `# build by specifying --build-name and --build-number, respectively.\n`+
-                `# In Android, build-name is used as versionName while build-number used as versionCode.\n`+
-                `# Read more about Android versioning at https://developer.android.com/studio/publish/versioning\n`+
-                `# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.\n`+
-                `# Read more about iOS versioning at\n`+
-                `# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html\n`+
-                `version: ${this.settings.version}\n\n`+
-                `environment:\n`+
-                `   sdk: ">=2.12.0 <3.0.0"\n\n`+
-                `dependencies:\n`+
-                `   flutter:\n`+
-                `       sdk: flutter\n\n`+
-                `# The following adds the Cupertino Icons font to your application.\n`+
-                `# Use with the CupertinoIcons class for iOS style icons.\n`+
-                `   cupertino_icons: any\n\n\n`+
-                `   karee: 2.1.0\n`+
-                `   url_launcher: 6.0.0\n\n`+
-                `   reflectable: ^3.0.1\n`+
-                `dev_dependencies:\n`+
-                `   flutter_test:\n`+
-                `       sdk: flutter\n`+
-                `   karee_injectable_gen: 1.0.1\n`+
-                `    \n`+
-                `#\n`+
-                `# Karee additional dependencies\n`+
-                `# \n`+
-                `   build_runner: any\n`+
-                `   build: ^2.0.0\n`+
-                `   source_gen: 1.0.0\n`+
-                `    \n`+
-                `# For information on the generic Dart part of this file, see the\n`+
-                `# following page: https://dart.dev/tools/pub/pubspec\n\n`+
-                `# The following section is specific to Flutter.\n`+
-                `flutter:\n\n`+
-                `# The following line ensures that the Material Icons font is\n`+
-                `# included with your application, so that you can use the icons in\n`+
-                `# the material Icons class.\n`+
-                `   uses-material-design: true\n`+
-                `# To add assets to your application, add an assets section, like this:\n`+
-                `    assets:\n`+
-                `        - resources/config/\n`+
-                `        - resources/l10n/\n`+
-                `        - assets/images/\n`+
-                `# An image asset can refer to one or more resolution-specific "variants", see\n`+
-                `# https://flutter.dev/assets-and-images/#resolution-aware.\n\n`+
-              
-                `# For details regarding adding assets from package dependencies, see\n`+
-                `# https://flutter.dev/assets-and-images/#from-packages\n\n`+
-              
-                `# To add custom fonts to your application, add a fonts section here,\n`+
-                `# in this "flutter" section. Each entry in this list should have a\n`+
-                `# "family" key with the font family name, and a "fonts" key with a\n`+
-                `# list giving the asset and other descriptors for the font. For\n`+
-                `# example:\n`+
-                `# fonts:\n`+
-                `#   - family: Schyler\n`+
-                `#     fonts:\n`+
-                `#       - asset: fonts/Schyler-Regular.ttf\n`+
-                `#       - asset: fonts/Schyler-Italic.ttf\n`+
-                `#         style: italic\n`+
-                `#   - family: Trajan Pro\n`+
-                `#     fonts:\n`+
-                `#       - asset: fonts/TrajanPro.ttf\n`+
-                `#       - asset: fonts/TrajanPro_Bold.ttf\n`+
-                `#         weight: 700\n`+
-                `#\n`+
-                `# For details regarding fonts from package dependencies\n`+
-                `# see https://flutter.dev/custom-fonts/#from-packages\n`+
-                `#`
-                , `pubspec.yaml`)
+                let template = io.readFile(io.projectFile(KareeProjectConfig.__template_pubspec), false)
+                template = template
+                    .toString()
+                    .replace('$appName', this.settings.appName)
+                    .replace('$appVersion', this.settings.version)
+                    .replace('$appDescription', this.settings.description)
+                
+                io.writeFile( template, `pubspec.yaml`)
 
                 /**
                  * On définit le fichier de configuration de karee
@@ -156,7 +84,7 @@ class KareeInstaller extends CommandRunner{
                 spinner.setSpinnerTitle('\x1b[32m\x1b[1mDownloading Karee file\x1b[22m\x1b[0m')
                 spinner.start()
                 let currentPath = process.cwd();
-                cmd.run(`git clone https://github.com/ChamplainLeCode/wp_core_kari.git tmp_karee_conf && cd ${process.cwd()}${path.sep}tmp_karee_conf && git reset --hard v1.0.2 && cd ${currentPath}`)
+                cmd.run(`git clone https://github.com/ChamplainLeCode/wp_core_kari.git tmp_karee_conf && cd ${process.cwd()}${path.sep}tmp_karee_conf && git reset --hard v1.0.3 && cd ${currentPath}`)
                     .on("close", (code, signalClone) => {
 
                         if(code == 0){
@@ -165,6 +93,7 @@ class KareeInstaller extends CommandRunner{
                             io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}lib`, `${process.cwd()}${path.sep}lib`)
                             io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}test`, `${process.cwd()}${path.sep}test`)
                             io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}resources`, `${process.cwd()}${path.sep}resources`)
+                            io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}assets`, `${process.cwd()}${path.sep}assets`)
                             io.delete('tmp_karee_conf')
 
 

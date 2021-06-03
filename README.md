@@ -43,11 +43,11 @@ With Karee you should not care because.
 
 ## Contributing
 
-Thank you for considering contributing to the Karee library! The contribution guide can be found in the [Karee documentation](https://github.com/ChamplainLeCode/karee/wiki/Contribution-Guide).
+Thank you for considering contributing to the Karee library! The contribution guide can be found in the [Karee documentation](https://github.com/ChamplainLeCode/karee-cli/wiki/Contribution-Guide).
 
 ## Code of Conduct
 
-In order to ensure that the Karee community is welcoming to all, please review and abide by the [Code of Conduct](https://github.com/ChamplainLeCode/karee/wiki/Contribution-Guide#code-of-conduct).
+In order to ensure that the Karee community is welcoming to all, please review and abide by the [Code of Conduct](https://github.com/ChamplainLeCode/karee-cli/wiki/Contribution-Guide#code-of-conduct).
 
 ## License
 
