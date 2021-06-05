@@ -121,11 +121,11 @@ class KareeInstaller extends CommandRunner{
                                         'build.yaml'
                                     )
                                     
-                                    this.runGenerateSource(() => {
-                                        console.log('\x1b[36m\x1b[1m\n\n\tYour Karee\'s projet is ready\x1b[22m\x1b[0m\n'); 
-                                        console.log('\x1b[36m\x1b[1m\n\trun "cd  \x1b[33m'+this.settings.appName+'\x1b[39m && flutter run"\x1b[22m\x1b[0m\n\n'); 
-                                        options.callback?.call(0);
-                                    })
+                                    // this.runGenerateSource(() => {
+                                    console.log('\x1b[36m\x1b[1m\n\n\tYour Karee\'s projet is ready\x1b[22m\x1b[0m\n'); 
+                                    console.log('\x1b[0m\n\tOpen your project \x1b[33m'+this.settings.appName+'\x1b[39m and happy coding\x1b[22m\x1b[0m\n\n'); 
+                                    //     options.callback?.call(0);
+                                    // })
                                         
                                 }
                             })
@@ -148,7 +148,9 @@ class KareeInstaller extends CommandRunner{
         spinner.setSpinnerTitle(`\x1b[32m\x1b[1mKaree is generating additional files in \x1b[33m${this.settings.appName}\x1b[39m\x1b[22m\x1b[0m`)
         spinner.start()
 
-        cmd.run('flutter packages pub run build_runner build --delete-conflicting-outputs')
+        io.delete(`lib${path.sep}core${path.sep}extensions`)
+        io.delete(`lib${path.sep}core${path.sep}core.reflectable.dart`)
+        cmd.run('flutter clean && flutter pub get && flutter packages pub run build_runner build --delete-conflicting-outputs')
            .on('close', (code, signal) => {
                spinner.stop(false)
                console.log('\n')
@@ -179,6 +181,7 @@ class KareeInstaller extends CommandRunner{
 
                 }
             })
+            .on('message', (msg) => console.log(msg))
     }
 
     runPubInTracker(options = {loader: null, callback: () => {}}){

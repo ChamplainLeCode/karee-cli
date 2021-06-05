@@ -1,5 +1,9 @@
 # Release Notes
 
+## V1.3.1+1
+ * Update: Update installer! remove generated file at this step and README
+## V1.3.1
+ * Update Adding config file yaml Karee v2.1.0
 ## V1.3.0
  * Update To point out to Karee v2.1.0
 ## V1.2.0
