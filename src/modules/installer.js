@@ -95,6 +95,7 @@ class KareeInstaller extends CommandRunner{
                             io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}resources`, `${process.cwd()}${path.sep}resources`)
                             io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}assets`, `${process.cwd()}${path.sep}assets`)
                             io.delete('tmp_karee_conf')
+                            io.delete(`lib${path.sep}core${path.sep}core.reflectable.dart`)
 
 
                             spinner.stop(false)
