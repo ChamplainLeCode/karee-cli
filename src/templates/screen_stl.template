@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:$appName/core/core.dart' show Screen;
+
+import 'package:karee/annotations.dart';
+import 'package:karee/widgets.dart';
+
 import 'components/congrat_card.dart';
 
 /// Generated Karee Screen
-/// @email champlainmarius20@gmail.com
-/// @github ChamplainLeCode
-///
-///
 ///
 /// `$classNameScreen` is set as Screen with name `$name`
 @Screen("$name")
-class $classNameScreen extends StatelessWidget {
+class $classNameScreen extends StatelessScreen {
 
   @override
-  Widget build(BuildContext context) {
+  Widget builder(BuildContext context) {
 
     return Scaffold(
       appBar: AppBar(),

@@ -59,6 +59,7 @@ class KareeProjectConfig{
     static __template_stf_screen = 'templates/screen_stf.template'
     static __template_stl_screen = 'templates/screen_stl.template'
     static __template_components = 'templates/component.template'
+    static __template_pubspec = 'templates/pubspec.template'
 
     
     constructor(){

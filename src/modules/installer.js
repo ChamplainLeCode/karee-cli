@@ -13,18 +13,6 @@ class KareeInstaller extends CommandRunner{
     settings = new KareeInstallerMeta
     helper = __karee_helper
 
-    // constructor(){
-    //     this.settings = new KareeInstallerMeta()
-    //     this.config = 
-    //     this.helper = 
-    // }
-
-    // async launch(){
-    //     await this.install({
-    //         callback: (status) => process.exit(status)
-    //     })
-    // }
-
 
     async install(options = {callback: (status = 0) => {}}) {
         do{
@@ -68,86 +56,14 @@ class KareeInstaller extends CommandRunner{
                 spinner.setSpinnerString('⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏')
                 spinner.start()
                 process.chdir(`${this.settings.appName}`)
-                io.writeFile(
-                `name: ${this.settings.appName}\n`+
-                `description: ${this.settings.description}.\n`+
-                `# The following line prevents the package from being accidentally published to\n`+
-                `# pub.dev using \`pub publish\`. This is preferred for private packages.\n`+
-                `publish_to: 'none' # Remove this line if you wish to publish to pub.dev\n`+
-                `# The following defines the version and build number for your application.\n`+
-                `# A version number is three numbers separated by dots, like 1.2.43\n`+
-                `# followed by an optional build number separated by a +.\n`+
-                `# Both the version and the builder number may be overridden in flutter\n`+
-                `# build by specifying --build-name and --build-number, respectively.\n`+
-                `# In Android, build-name is used as versionName while build-number used as versionCode.\n`+
-                `# Read more about Android versioning at https://developer.android.com/studio/publish/versioning\n`+
-                `# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.\n`+
-                `# Read more about iOS versioning at\n`+
-                `# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html\n`+
-                `version: ${this.settings.version}\n\n`+
-                `environment:\n`+
-                `   sdk: ">=2.3.0 <3.0.0"\n\n`+
-                `dependencies:\n`+
-                `   flutter:\n`+
-                `       sdk: flutter\n\n`+
-                `# The following adds the Cupertino Icons font to your application.\n`+
-                `# Use with the CupertinoIcons class for iOS style icons.\n`+
-                `   cupertino_icons: any\n\n\n`+
-                `dev_dependencies:\n`+
-                `   flutter_test:\n`+
-                `       sdk: flutter\n`+
-                `    \n`+
-                `#\n`+
-                `# Karee additional dependencies\n`+
-                `# \n`+
-                `   reflectable: 2.2.0\n`+
-                `   build_runner: any\n`+
-                `   build: '>=0.12.0 <2.0.0'\n`+
-                `   source_gen: ^0.9.0\n`+
-                `   screen_tracker:\n`+
-                `       path: lib/core/screen_tracker/\n`+
-                `   screengen:\n`+
-                `       path: lib/core/screen_tracker/screengen/\n`+
-                `    \n`+
-                `# For information on the generic Dart part of this file, see the\n`+
-                `# following page: https://dart.dev/tools/pub/pubspec\n\n`+
-                `# The following section is specific to Flutter.\n`+
-                `flutter:\n\n`+
-                `# The following line ensures that the Material Icons font is\n`+
-                `# included with your application, so that you can use the icons in\n`+
-                `# the material Icons class.\n`+
-                `   uses-material-design: true\n`+
-                `# To add assets to your application, add an assets section, like this:\n`+
-                `# assets:\n`+
-                `#   - images/a_dot_burr.jpeg\n`+
-                `#   - images/a_dot_ham.jpeg\n\n`+
-                `# An image asset can refer to one or more resolution-specific "variants", see\n`+
-                `# https://flutter.dev/assets-and-images/#resolution-aware.\n\n`+
-              
-                `# For details regarding adding assets from package dependencies, see\n`+
-                `# https://flutter.dev/assets-and-images/#from-packages\n\n`+
-              
-                `# To add custom fonts to your application, add a fonts section here,\n`+
-                `# in this "flutter" section. Each entry in this list should have a\n`+
-                `# "family" key with the font family name, and a "fonts" key with a\n`+
-                `# list giving the asset and other descriptors for the font. For\n`+
-                `# example:\n`+
-                `# fonts:\n`+
-                `#   - family: Schyler\n`+
-                `#     fonts:\n`+
-                `#       - asset: fonts/Schyler-Regular.ttf\n`+
-                `#       - asset: fonts/Schyler-Italic.ttf\n`+
-                `#         style: italic\n`+
-                `#   - family: Trajan Pro\n`+
-                `#     fonts:\n`+
-                `#       - asset: fonts/TrajanPro.ttf\n`+
-                `#       - asset: fonts/TrajanPro_Bold.ttf\n`+
-                `#         weight: 700\n`+
-                `#\n`+
-                `# For details regarding fonts from package dependencies\n`+
-                `# see https://flutter.dev/custom-fonts/#from-packages\n`+
-                `#`
-                , `pubspec.yaml`)
+                let template = io.readFile(io.projectFile(KareeProjectConfig.__template_pubspec), false)
+                template = template
+                    .toString()
+                    .replace('$appName', this.settings.appName)
+                    .replace('$appVersion', this.settings.version)
+                    .replace('$appDescription', this.settings.description)
+                
+                io.writeFile( template, `pubspec.yaml`)
 
                 /**
                  * On définit le fichier de configuration de karee
@@ -167,7 +83,8 @@ class KareeInstaller extends CommandRunner{
                 spinner.setSpinnerString('⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏')
                 spinner.setSpinnerTitle('\x1b[32m\x1b[1mDownloading Karee file\x1b[22m\x1b[0m')
                 spinner.start()
-                cmd.run('git clone https://github.com/ChamplainLeCode/wp_core_kari.git tmp_karee_conf')
+                let currentPath = process.cwd();
+                cmd.run(`git clone https://github.com/ChamplainLeCode/wp_core_kari.git tmp_karee_conf && cd ${process.cwd()}${path.sep}tmp_karee_conf && git reset --hard v1.0.4 && cd ${currentPath}`)
                     .on("close", (code, signalClone) => {
 
                         if(code == 0){
@@ -175,7 +92,10 @@ class KareeInstaller extends CommandRunner{
                             io.delete(`${process.cwd()}${path.sep}test`)
                             io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}lib`, `${process.cwd()}${path.sep}lib`)
                             io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}test`, `${process.cwd()}${path.sep}test`)
+                            io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}resources`, `${process.cwd()}${path.sep}resources`)
+                            io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}assets`, `${process.cwd()}${path.sep}assets`)
                             io.delete('tmp_karee_conf')
+                            io.delete(`lib${path.sep}core${path.sep}core.reflectable.dart`)
 
 
                             spinner.stop(false)
@@ -194,28 +114,6 @@ class KareeInstaller extends CommandRunner{
                                         'targets:\n'+
                                         '   $default:\n'+
                                         '       builders:\n'+
-                                        '           screengen|screen_tracker:\n'+
-                                        '               enabled: true\n'+
-                                        'builders:\n'+
-                                        '   screen_tracker:\n'+
-                                        '       target: ":screengen"\n'+
-                                        `       import: "package:${this.settings.appName}/core/screen_tracker/screengen/lib/builder.dart"\n`+
-                                        '       builder_factories: ["screenTracker"]\n'+
-                                        '       build_extensions: {".dart": [".kari"]}\n'+
-                                        '       auto_apply: dependents\n'+
-                                        '       build_to: cache\n'+
-                                        '       applies_builders: ["source_gen|combining_builder"]\n', 'build.yaml'
-                                    )
-
-                                    /**
-                                     * On revient à la racine du projet créé
-                                     * pour générer la configuration de build 
-                                     */
-                                    process.chdir(`..${path.sep}..${path.sep}..${path.sep}..`)
-                                    io.writeFile(
-                                        'targets:\n'+
-                                        '   $default:\n'+
-                                        '       builders:\n'+
                                         '           reflectable:\n'+
                                         '               generate_for:\n'+
                                         '                   - lib/core/core.dart\n'+
@@ -224,11 +122,11 @@ class KareeInstaller extends CommandRunner{
                                         'build.yaml'
                                     )
                                     
-                                    this.runGenerateSource(() => {
-                                        console.log('\x1b[36m\x1b[1m\n\n\tYour Karee\'s projet is ready\x1b[22m\x1b[0m\n'); 
-                                        console.log('\x1b[36m\x1b[1m\n\trun "cd  \x1b[33m'+this.settings.appName+'\x1b[39m && flutter run"\x1b[22m\x1b[0m\n\n'); 
-                                        options.callback?.call(0);
-                                    })
+                                    // this.runGenerateSource(() => {
+                                    console.log('\x1b[36m\x1b[1m\n\n\tYour Karee\'s projet is ready\x1b[22m\x1b[0m\n'); 
+                                    console.log('\x1b[0m\n\tOpen your project \x1b[33m'+this.settings.appName+'\x1b[39m and happy coding\x1b[22m\x1b[0m\n\n'); 
+                                    //     options.callback?.call(0);
+                                    // })
                                         
                                 }
                             })
@@ -251,7 +149,9 @@ class KareeInstaller extends CommandRunner{
         spinner.setSpinnerTitle(`\x1b[32m\x1b[1mKaree is generating additional files in \x1b[33m${this.settings.appName}\x1b[39m\x1b[22m\x1b[0m`)
         spinner.start()
 
-        cmd.run('flutter packages pub run build_runner build --delete-conflicting-outputs')
+        io.delete(`lib${path.sep}core${path.sep}extensions`)
+        io.delete(`lib${path.sep}core${path.sep}core.reflectable.dart`)
+        cmd.run('flutter clean && flutter pub get && flutter packages pub run build_runner build --delete-conflicting-outputs')
            .on('close', (code, signal) => {
                spinner.stop(false)
                console.log('\n')
@@ -271,17 +171,18 @@ class KareeInstaller extends CommandRunner{
             .on('close', (codePub1, signalPub1)=>{
 
                 if(codePub1 == 0){
-                    if( options.deep ){
-                        this.runPubInTracker({loader: spinner, callback: options?.callback})  
-                    }else{
+                    //if( options.deep ){
+                    //    this.runPubInTracker({loader: spinner, callback: options?.callback})  
+                    //}else{
                         spinner.stop(false)
                         console.log('\n')
                         options.callback?.call()
-                    }                                  
+                    //}                                  
                 }else {
 
                 }
             })
+            .on('message', (msg) => console.log(msg))
     }
 
     runPubInTracker(options = {loader: null, callback: () => {}}){

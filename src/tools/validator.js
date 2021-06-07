@@ -36,8 +36,8 @@ class Validator{
 
         if(genConfig.className === undefined || genConfig.className === null)
             exception.log('className of screen is required.')
-        if(genConfig.name === undefined || genConfig.name === null || genConfig.name.length == 0)
-            exception.log('Screen\'s name is required. add option --name <screenName> ')
+        // if(genConfig.name === undefined || genConfig.name === null || genConfig.name.length == 0)
+        //     exception.log('Screen\'s name is required. add option --name <screenName> ')
         if(genConfig.path != null && genConfig.path != undefined){
             if(genConfig.path.startsWith('/'))
                 genConfig.path = genConfig.path.replace('/', '')
