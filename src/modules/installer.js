@@ -84,7 +84,7 @@ class KareeInstaller extends CommandRunner{
                 spinner.setSpinnerTitle('\x1b[32m\x1b[1mDownloading Karee file\x1b[22m\x1b[0m')
                 spinner.start()
                 let currentPath = process.cwd();
-                cmd.run(`git clone https://github.com/ChamplainLeCode/wp_core_kari.git tmp_karee_conf && cd ${process.cwd()}${path.sep}tmp_karee_conf && git reset --hard v1.0.3 && cd ${currentPath}`)
+                cmd.run(`git clone https://github.com/ChamplainLeCode/wp_core_kari.git tmp_karee_conf && cd ${process.cwd()}${path.sep}tmp_karee_conf && git reset --hard v1.0.4 && cd ${currentPath}`)
                     .on("close", (code, signalClone) => {
 
                         if(code == 0){
