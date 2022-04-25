@@ -7,13 +7,15 @@
             "supports": ["objc", "swift"]
             
         },
-        "description": "Hi! My flutter application used Karee library",
+        "description": "Hi! My flutter {type} is based on Karee library",
         "version": "1.0.0",
         "organization": "com.karee.app",
+        "type": ["Application", "Module"],
         "questions": {
-            "appName": "What is your application name ?",
-            "version": "What is the version of your application ?",
-            "description": "Can you give us a description of your app ?",
+            "type": "Which kind of project you want to create?",
+            "appName": "What is your {type} name ?",
+            "version": "What is the version of your {type} ?",
+            "description": "Can you give us a description of your {type} ?",
             "organization": "What is your organization ID ?",
             "androidSupport": "What is the android support language ?",
             "iosSupport": "What is the ios support language ?"

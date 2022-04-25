@@ -64,7 +64,11 @@ class IO {
     }
 
     delete(path){
-        fs.rmdirSync(path, {recursive: true})
+        try{
+            fs.rmSync(path, {recursive: true, force: true})
+        }catch(e){
+            // console.log(e);
+        }
     }
 
     projectFile(localFilePath){

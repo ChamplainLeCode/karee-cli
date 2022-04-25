@@ -3,10 +3,16 @@ const formatter = require('../tools/formatter')
 const KareeGeneratorMeta = require('../models/karee_generator_meta')
 const {__karee_helper, KareeProjectConfig} = require('../models/karee_config')
 const validator = require('../tools/validator')
-
+const projectConstants = require('../config/constants')
 module.exports = class KareeGenerator{
 
     settings = new KareeGeneratorMeta()
+
+    /**
+        Here we load project configuration,
+        It'll automaticaly exit the execution if the karee command that requires this is
+        not running into karee project.
+    */
     projectConfig = new KareeProjectConfig()
     helper = __karee_helper
 
@@ -20,6 +26,23 @@ module.exports = class KareeGenerator{
         }else if(this.settings.isScreen){
             this.generateScreen()
         }
+        // console.log(this.settings)
+    }
+
+    /**
+     * This function is used to generate dictionary class from i18n
+     */
+    generateResources(){
+        let dictionary = io.readFile(projectConstants.dictionary_application_file)
+        io.createDir(projectConstants.resources_dir_generated)
+        let f = 
+        '\nclass Dictionary {\n\n';
+
+        for(let t in dictionary){
+            f += `\tstatic const String ${formatter.pointedToCambel(t)} = '${t}';\n`;
+        }
+        f += '}';
+        io.writeFile(f, projectConstants.resources_dir_generated_i18n);
     }
 
     generateController(){
@@ -30,6 +53,8 @@ module.exports = class KareeGenerator{
         template = template
             .toString()
             .replace('$appName', this.projectConfig.appName)
+            .replace('$className', formatter.underscoreToCambel(this.settings.className))
+            .replace('$className', formatter.underscoreToCambel(this.settings.className))
             .replace('$className', formatter.underscoreToCambel(this.settings.className))
             .replace('$className', formatter.underscoreToCambel(this.settings.className))
             .replace('$className', formatter.underscoreToCambel(this.settings.className))
@@ -46,7 +71,7 @@ module.exports = class KareeGenerator{
     }
 
     generateScreen(){
-        console.log(this.settings)
+        // console.log(this.settings)
         validator.validateGeneratedScreen(this.settings)
         let template = ''
         if(this.settings.isStatefull)
@@ -60,9 +85,11 @@ module.exports = class KareeGenerator{
             .replace('$className', formatter.underscoreToCambel(this.settings.className))
             .replace('$className', formatter.underscoreToCambel(this.settings.className))
         if(this.settings.name === null || this.settings.name === undefined){
-            template = template .replace('@Screen("$name")', formatter.cambelToUnderscore(''))
-            .replace('$name', formatter.cambelToUnderscore(''))
-            console.log(template)
+            template = template 
+                .replace('@Screen("$name")', formatter.cambelToUnderscore(''))
+                .replace('import \'package:karee/annotations.dart\';\n', '')
+                .replace('$name', formatter.cambelToUnderscore(''))
+            // console.log(template)
         }else{
             template = template
                 .replace('$name', formatter.cambelToUnderscore(this.settings.name))

@@ -8,8 +8,10 @@ import 'package:karee/annotations.dart';
 @Controller
 class $classNameController{
    
+  static $classNameController get instance =>
+      KareeInjector.instance<$classNameController>()!;
    
-  String index(){
+  String readyText(){
 
       return '$classNameController is ready to use';
 

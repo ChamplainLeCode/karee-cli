@@ -25,7 +25,9 @@ class KareeInstallHelper{
     ios =      { supports: [] }
     description = null
     organization = null
+    type = []
     questions = {
+        type: null,
         appName: null,
         version: null,
         description: null,
@@ -40,6 +42,8 @@ class KareeInstallHelper{
         this.description = json.description,
         this.version = json.version
         this.organization = json.organization
+        this.type = json.type
+        this.questions.type = json.questions.type
         this.questions.appName = json.questions.appName
         this.questions.version = json.questions.version
         this.questions.description = json.questions.description
@@ -60,6 +64,11 @@ class KareeProjectConfig{
     static __template_stl_screen = 'templates/screen_stl.template'
     static __template_components = 'templates/component.template'
     static __template_pubspec = 'templates/pubspec.template'
+    static __template_pubspec_module = 'templates/pubspec_module.template'
+    static __template_module_declaration = 'templates/module_declaration.template'
+    static __template_module_main_declaration = 'templates/module_main_declaration.template'
+    static __template_module_route_declaration = 'templates/module_routes_declaration.template'
+    static __template_analysis_options_config = 'templates/analysis_options.template'
 
     
     constructor(){

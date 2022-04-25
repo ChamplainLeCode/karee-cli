@@ -2,6 +2,7 @@
 module.exports = class KareeGeneratorMeta {
     className = '';
     isController = false;
+    // isModule = false;
     isScreen = false;
     isStatefull = true;
     path = '';
@@ -10,6 +11,7 @@ module.exports = class KareeGeneratorMeta {
     setConfig(opts){
         // this.className ??= opts?.
         this.isController = opts.c || opts.controller  || false
+        // this.isModule = opts.m || opts.module || false 
         this.isScreen = opts.s || opts.screen || false
         this.path = opts.path
         this.name = opts.name

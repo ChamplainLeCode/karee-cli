@@ -26,6 +26,21 @@ function underscoreToCambel(name = '') {
     return response
 }
 
+function pointedToCambel(name = '') {
+    let response = '';
+    for (let index = 0; index < name.length; index++) {
+        let char = name.charAt(index)
+        char = index == 0 && !isUpper(char) ? char.toLowerCase() : char
+        if(char == '.' || char == '_'){
+            response = response+(index +1 < name.length ? name.charAt(index+1).toUpperCase() : '')
+            index++
+        }else{
+            response = response+char
+        }
+    }
+    return response
+}
+
 function isUpper(char = '') {
     return char.charCodeAt() >= 65 && char.charCodeAt() <= 90
 }
@@ -34,5 +49,6 @@ function isUpper(char = '') {
 
 module.exports = {
     cambelToUnderscore,
-    underscoreToCambel
+    underscoreToCambel,
+    pointedToCambel
 }

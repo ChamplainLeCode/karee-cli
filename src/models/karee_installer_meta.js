@@ -1,6 +1,7 @@
 
 
 module.exports = class KareeInstallerMeta {
+    type = ''
     appName = '';
     androidSupport = 'kotlin';
     iosSupport = 'swift';

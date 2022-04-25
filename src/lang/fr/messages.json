@@ -7,13 +7,15 @@
             "supports": ["objc", "swift"]
             
         },
-        "description": "Salut! Mon application Flutter utilise la librairie Karee",
+        "description": "Salut! Mon {type} Flutter est basé la librairie Karee",
         "version": "1.0.0",
         "organization": "com.karee.app",
+        "type": ["Application", "Module"],
         "questions": {
-            "appName": "Quel est le nom de ton application ?",
-            "version": "Quelle est la version de cette application ?",
-            "description": "Veux-tu fournir une description pour cette application ?",
+            "type": "Quel type de projet voulez-vous créer ?",
+            "appName": "Quel est le nom de ton {type} ?",
+            "version": "Quelle est la version de cette {type} ?",
+            "description": "Veux-tu fournir une description pour cette {type} ?",
             "organization": "Quel est l'identifiant de domaine de ton organisation ?",
             "androidSupport": "Quel langage support veux-tu utiliser pour Android ?",
             "iosSupport": "Quel langage support veux-tu utiliser pour IOS ?"

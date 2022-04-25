@@ -4,7 +4,7 @@ const cmd = require('node-cmd')
 const path = require('path')
 const { exit } = require('yargs')
 const io = require('../io/io')
-
+const KareeGenerator = require('./generator')
 
 class KareeSourceGen{
 
@@ -17,10 +17,32 @@ class KareeSourceGen{
         spinner.setSpinnerTitle(`\x1b[32m\x1b[1mKaree is generating additional source in \x1b[33m${this.projectConfig.appName}\x1b[39m\x1b[22m\x1b[0m`)
         spinner.start()
 
-        
-        io.delete(`lib${path.sep}core${path.sep}extensions`)
-        io.delete(`lib${path.sep}core${path.sep}core.reflectable.dart`)
-        cmd.run('flutter clean && flutter pub get && flutter packages pub run build_runner watch --delete-conflicting-outputs')
+        let subpath = this.projectConfig.settings.type === 'Module' ? `${path.sep}src${path.sep}` : `${path.sep}`;
+
+        try{
+            
+            io.delete(`lib${subpath}core${path.sep}extensions`)
+            }catch(e){
+                // console.log('\nThe core extensions does not exists! Recreating');
+            }
+        try{
+            io.delete(`lib${path.sep}resources`)
+        }catch(e){
+            // console.log('\nThe core dictionary does not resources! Recreating');
+        }
+        try{
+            io.delete(`lib${subpath}core${path.sep}screens.dart`)
+        }catch(e){
+            // console.log('\nThe core screens repository does not exists! Recreating')
+        }
+
+        /**
+         *  Here we generate language dictionary
+         */
+        let generator = new KareeGenerator();
+        generator.generateResources()
+
+        cmd.run(`flutter clean && flutter pub get && flutter packages pub run build_runner watch --delete-conflicting-outputs`)
            .on('close', (code, signal) => {
                spinner.stop(false)
                console.log('\n')

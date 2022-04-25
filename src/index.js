@@ -14,22 +14,39 @@ const io = require('./io/io');
 const argv = require('yargs/yargs')(process.argv.slice(2))
 
             .command({
-                command: '\x1b[33m\x1b[1mcreate\x1b[0m',
-                aliases: ['create'],
-                describe: 'Create a new Flutter projet that using MVC Pattern based on Karee\n\n',
-                handler: (argv) => {
-                    installer.install({
-                        callback: (status) => process.exit(status)
-                    })
-                }, 
-            })
-            .command({
                 command: '\x1b[33m\x1b[1mbuild\x1b[0m',
                 aliases: ['build','b'],
                 describe: 'The build command help you to build a realease of your application. This use flutter build command\n\n',
                 handler: (argv) => {
                     let kareeRunner = new KareeBuilder()
                     kareeRunner.build(() => exit(0))
+                }, 
+            })
+            .command({
+                command: '\x1b[33m\x1b[1mcreate\x1b[0m',
+                aliases: ['create'],
+                describe: 'Create a new Flutter projet that using MVC Pattern based on Karee\n\n',
+                handler: (argv) => {
+
+                    // KareeProjectConfig
+                    installer.install({
+                        callback: (status) => process.exit(status)
+                    })
+                }, 
+            })
+            .command({
+                command: '\x1b[33m\x1b[1mdictionary\x1b[0m',
+                aliases: ['dictionary', 'd'],
+                describe: 'Generate dictionary constants, following cambel case for the current karee projet according to [locale.json] files in resources/i18n\n\n',
+                handler: (argv) => {
+
+                    try{
+                        io.delete(`lib${path.sep}resources`)
+                    }catch(e){
+                        // console.log('\nThe core dictionary does not resources! Recreating');
+                    }
+                    let kareeGenerator = new KareeGenerator()
+                    kareeGenerator.generateResources()
                 }, 
             }).command({
                 command: '\x1b[33m\x1b[1mgenerate\x1b[0m [--options] \x1b[34m\x1b[1m<className>\x1b[0m',
@@ -43,8 +60,8 @@ const argv = require('yargs/yargs')(process.argv.slice(2))
                         🏉 To Generate a controller add \x1b[35m\x1b[1m--controller\x1b[0m or \x1b[35m\x1b[1m-c\x1b[0m option\n\
                         ---👍 add the path where to generate your screen from \x1b[1mapp/controllers/\x1b[0m directory with \x1b[35m\x1b[1m--path\x1b[0m or \x1b[35m\x1b[1m-p\x1b[0m.\n\n',
                 handler: (argv) => {
-                    //console.log(argv)
                     let generator = new KareeGenerator();
+                    // console.log(argv)
                     generator.generate({
                         callback: (status) => exit(status),
                         options: argv
@@ -88,6 +105,11 @@ const argv = require('yargs/yargs')(process.argv.slice(2))
                 controller: {
                     alias: 'c',
                     describe: 'This option is used with generate command, it means you want to generate a controller',
+                    nargs: 0
+                },
+                module: {
+                    alias: 'm',
+                    describe: 'This option is used with generate command, it means you want to generate a module',
                     nargs: 0
                 },
                 class: {

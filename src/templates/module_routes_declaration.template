@@ -1,0 +1,10 @@
+import 'package:karee/navigation.dart' show Route;
+import '../controllers/sample_controller.dart';
+
+/*
+ * By Karee
+ * 
+ */
+void registeredRoute() {
+  Route.on('/$moduleName', SampleController.instance.readyText);
+}

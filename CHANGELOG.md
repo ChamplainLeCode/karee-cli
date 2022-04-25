@@ -1,5 +1,11 @@
 # Release Notes
 
+## V1.3.5
+ * Adding module generation and support
+ * Update: Update installer 
+    - Karee ^2.2.0
+    - Karee Injectable Gen ^1.0.2
+    - Karee Inject ^1.0.3
 ## V1.3.4
  * Update: Update installer! update core file to 1.0.4
 ## V1.3.3
