@@ -19,7 +19,7 @@ version: $appVersion
 publish_to: none
 
 environment:
-   sdk: ">=2.15.0 <3.0.0"
+   sdk: ">=2.18.1 <3.0.0"
 
 dependencies:
    flutter:
@@ -92,10 +92,10 @@ flutter:
   # maintain consistency when adding or modifying assets and plugins.
   # They also do not have any bearing on your native host application's
   # identifiers, which may be completely independent or the same as these.
-   module:
-      androidX: true
-      androidPackage: $appOrganization
-      iosBundleIdentifier: $appOrganization
+  # module:
+  #    androidX: true
+  #    androidPackage: $appOrganization
+  #    iosBundleIdentifier: $appOrganization
    
    assets:
       - resources/config/

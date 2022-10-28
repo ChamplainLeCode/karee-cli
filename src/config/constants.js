@@ -12,7 +12,7 @@ class KareeProjectConstants {
     static resources_dir_generated_i18n = `${KareeProjectConstants.resources_dir_generated}dictionary.dart`
 
     static supportedModuleVersion = 'v1.0.0'
-    static supportedWpKareeCoreVersion  = 'v1.0.6'
+    static supportedWpKareeCoreVersion  = 'v1.0.7+1'
 }
 
 module.exports = KareeProjectConstants

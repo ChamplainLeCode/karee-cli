@@ -11,7 +11,8 @@ import 'components/congrat_card.dart';
 @Screen("$name")
 class $classNameScreen extends StatefulScreen {
 
-  _$classNameState createState() => new _$classNameState();
+  @override
+  _$classNameState createState() => _$classNameState();
 }
 
 class _$classNameState extends ScreenState<$classNameScreen> {

@@ -8,3 +8,4 @@ linter:
     prefer_const_constructors_in_immutables: false
     avoid_returning_null_for_void: true
     avoid_print: true
+    library_private_types_in_public_api: false

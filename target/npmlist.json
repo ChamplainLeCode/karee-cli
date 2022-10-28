@@ -1,0 +1,1 @@
+{"version":"1.3.5","name":"karee","dependencies":{"cli-spinner":{"version":"0.2.10"},"fs-extra":{"version":"9.1.0"},"inquirer":{"version":"7.3.3"},"node-cmd":{"version":"4.0.0"},"npm":{"version":"8.6.0"},"yargs":{"version":"16.2.0"}}}

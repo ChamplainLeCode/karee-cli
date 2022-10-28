@@ -1,5 +1,9 @@
 # Release Notes
 
+## V1.3.6
+ * Update: Update installer 
+    - Karee ^2.2.1
+ * Update: Update generator
 ## V1.3.5
  * Adding module generation and support
  * Update: Update installer 

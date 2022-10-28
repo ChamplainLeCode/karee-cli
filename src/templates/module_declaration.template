@@ -8,7 +8,7 @@ class $moduleClassModule extends KareeRoutableModule {
   @override
   Future<void> initialize() async {
     await initCore(this);
-    super.initialize();
+    await super.initialize();
   }
 
   @override

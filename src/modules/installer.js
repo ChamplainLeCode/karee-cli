@@ -139,8 +139,7 @@ class KareeInstaller extends CommandRunner {
                                 io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}test`, `${process.cwd()}${path.sep}test`)
                                 io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}resources`, `${process.cwd()}${path.sep}resources`)
                                 io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}assets`, `${process.cwd()}${path.sep}assets`)
-                                io.move(`${process.cwd()}${path.sep}tmp_karee_conf${path.sep}modules`, `${process.cwd()}${path.sep}modules`)
-                                // io.delete('tmp_karee_conf')
+                                io.delete('tmp_karee_conf')
                                 io.delete(`lib${path.sep}core${path.sep}core.reflectable.dart`)
 
 
@@ -265,12 +264,8 @@ class KareeInstaller extends CommandRunner {
                                         io.writeFile( template, KareeProjectConstants.analysis_options_filename)
                                         
 
-                                    console.log('\x1b[36m\x1b[1m\n\n\tYour Karee\'s module is ready\x1b[22m\x1b[0m\n'); 
-                                    console.log('\x1b[0m\n\tOpen your project \x1b[33m'+this.settings.appName+'\x1b[39m and happy coding\x1b[22m\x1b[0m\n\n'); 
-                            
-                                        //     options.callback?.call(0);
-                                        // })
-                                            
+                                        console.log('\x1b[36m\x1b[1m\n\n\tYour Karee\'s module is ready\x1b[22m\x1b[0m\n'); 
+                                        console.log('\x1b[0m\n\tOpen your project \x1b[33m'+this.settings.appName+'\x1b[39m and happy coding\x1b[22m\x1b[0m\n\n');
                                     }
                                 })
 
