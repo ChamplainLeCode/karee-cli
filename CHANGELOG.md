@@ -1,5 +1,8 @@
 # Release Notes
 
+## V1.3.7
+ * Update: Update installer for Module 
+    - Karee ^2.2.1
 ## V1.3.6
  * Update: Update installer 
     - Karee ^2.2.1
