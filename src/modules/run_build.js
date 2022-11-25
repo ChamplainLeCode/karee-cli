@@ -23,17 +23,14 @@ class KareeSourceGen{
             
             io.delete(`lib${subpath}core${path.sep}extensions`)
             }catch(e){
-                // console.log('\nThe core extensions does not exists! Recreating');
             }
         try{
             io.delete(`lib${path.sep}resources`)
         }catch(e){
-            // console.log('\nThe core dictionary does not resources! Recreating');
         }
         try{
             io.delete(`lib${subpath}core${path.sep}screens.dart`)
         }catch(e){
-            // console.log('\nThe core screens repository does not exists! Recreating')
         }
 
         /**

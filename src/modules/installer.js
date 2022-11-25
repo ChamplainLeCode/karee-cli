@@ -128,6 +128,7 @@ class KareeInstaller extends CommandRunner {
                 if(!this.isModule){
                     cmd.run(`git clone https://github.com/ChamplainLeCode/wp_core_kari.git tmp_karee_conf && cd ${process.cwd()}${path.sep}tmp_karee_conf && git reset --hard ${KareeProjectConstants.supportedWpKareeCoreVersion} && cd ${currentPath}`)
                     .on('data', (_) => console.log(_))    
+                    .on("error", (_) => console.log(_))
                     .on("close", (code, signalClone) => {
 
                             if(code == 0){
