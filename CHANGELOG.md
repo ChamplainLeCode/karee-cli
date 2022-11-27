@@ -1,5 +1,8 @@
 # Release Notes
 
+## V1.3.10
+ * Update: Update karee version. Fix internationalization for Module 
+    - Karee ^2.2.3+2
 ## V1.3.9
  * Update: Update Sourcer for Module 
     - Karee ^2.2.3

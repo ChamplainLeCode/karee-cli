@@ -1,6 +1,6 @@
 {
   "name": "karee",
-  "version": "1.3.9",
+  "version": "1.3.10",
   "description": "Another way to build Flutter applications for mobile, web and desktop using Karee Architecture.",
   "main": "src/index.js",
   "bin": {
