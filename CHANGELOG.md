@@ -1,6 +1,6 @@
 # Release Notes
 
-## V1.3.8
+## V1.3.9
  * Update: Update Sourcer for Module 
     - Karee ^2.2.3
 ## V1.3.7
