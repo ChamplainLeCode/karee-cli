@@ -1,5 +1,8 @@
 # Release Notes
 
+## V1.3.11
+ * Update: Update karee version. Adding routing context in activation function 
+    - Karee ^2.2.3+4
 ## V1.3.10
  * Update: Update karee version. Fix internationalization for Module 
     - Karee ^2.2.3+2

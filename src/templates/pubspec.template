@@ -26,13 +26,13 @@ dependencies:
 # Use with the CupertinoIcons class for iOS style icons.
    cupertino_icons: any
 
-   karee: ^2.2.3+2
+   karee: ^2.2.3+4
    url_launcher: ^6.0.0
 
 dev_dependencies:
    flutter_test:
        sdk: flutter
-   karee_injectable_gen: ^1.0.2
+   karee_injectable_gen: ^1.0.2+1
    flutter_lints: 
 
 #
