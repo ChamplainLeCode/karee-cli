@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:karee/annotations.dart';
 import 'package:karee/widgets.dart';
 
-import 'components/congrat_card.dart';
-
-/// Generated Karee Screen
-///
-/// `$classNameScreen` is set as Screen with name `$name`
-@Screen("$name")
+/// 
+/// `$classNameScreen`: TODO add some documentation
+/// 
+@Screen('$ScreenName')
 class $classNameScreen extends StatefulScreen {
 
   @override
@@ -23,7 +21,7 @@ class _$classNameState extends ScreenState<$classNameScreen> {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-          child: CongratCard()
+          child: Text('$classNameScreen works !!!')
       )
     );
   }

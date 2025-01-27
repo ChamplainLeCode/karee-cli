@@ -25,10 +25,8 @@ const argv = require('yargs/yargs')(process.argv.slice(2))
             .command({
                 command: '\x1b[33m\x1b[1mcreate\x1b[0m',
                 aliases: ['create'],
-                describe: 'Create a new Flutter projet that using MVC Pattern based on Karee\n\n',
+                describe: 'Create a new Karee project\n\n',
                 handler: (argv) => {
-
-                    // KareeProjectConfig
                     installer.install({
                         callback: (status) => process.exit(status)
                     })

@@ -11,8 +11,12 @@ class KareeProjectConstants {
     static resources_dir_generated = 'lib/resources/'
     static resources_dir_generated_i18n = `${KareeProjectConstants.resources_dir_generated}dictionary.dart`
 
+    static app_base_dir = `lib/app/`
+    static controller_default_base_dir = `${KareeProjectConstants.app_base_dir}controllers`
+    static screens_default_base_dir = `${KareeProjectConstants.app_base_dir}screens` 
+
     static supportedModuleVersion = 'v1.0.0'
-    static supportedWpKareeCoreVersion  = 'v1.0.7+2'
+    static supportedWpKareeCoreVersion  = 'v1.0.7+4'
 }
 
 module.exports = KareeProjectConstants

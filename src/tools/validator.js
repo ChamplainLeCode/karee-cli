@@ -16,6 +16,20 @@ class Validator{
         return null
     }
 
+    static extractPathInClassName(className = ''){
+        let newClassName = className
+        let path = '/'
+        // trying to extract path from settings.name
+        let part = className.split('/')
+        if(part.length > 1){
+            newClassName = part[part.length-1]
+            // We must remove the last part because it represents the class name.
+            part = part.slice(0, part.length-1)
+            path = part.join('/')+'/'
+        }
+        return [newClassName, path]
+    }
+
     static validateGeneratedController(genConfig = null){
         if(genConfig == null)
             exception.log('Fatal error: Fail to load configs')
@@ -27,24 +41,25 @@ class Validator{
             if( ! genConfig.path.endsWith('/'))
                 genConfig.path = genConfig.path + '/'
         }else {
-            genConfig.path  = '/'
+            [genConfig.className, genConfig.path] = Validator.extractPathInClassName(genConfig.className)
         }
         
     }
 
     static validateGeneratedScreen(genConfig = new KareeGeneratorMeta()){
 
-        if(genConfig.className === undefined || genConfig.className === null)
+        if(genConfig.className === undefined || genConfig.className === null){
             exception.log('className of screen is required.')
-        // if(genConfig.name === undefined || genConfig.name === null || genConfig.name.length == 0)
-        //     exception.log('Screen\'s name is required. add option --name <screenName> ')
+        }
         if(genConfig.path != null && genConfig.path != undefined){
-            if(genConfig.path.startsWith('/'))
+            if(genConfig.path.startsWith('/')){
                 genConfig.path = genConfig.path.replace('/', '')
-            if( ! genConfig.path.endsWith('/'))
+            }
+            if( ! genConfig.path.endsWith('/')){
                 genConfig.path = genConfig.path + '/'
+            }
         }else {
-            genConfig.path  = '/'
+            [genConfig.className, genConfig.path] = Validator.extractPathInClassName(genConfig.className)
         }
     }
 }

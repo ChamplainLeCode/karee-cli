@@ -15,7 +15,7 @@
             "type": "Quel type de projet voulez-vous créer ?",
             "appName": "Quel est le nom de ton {type} ?",
             "version": "Quelle est la version de cette {type} ?",
-            "description": "Veux-tu fournir une description pour cette {type} ?",
+            "description": "Quelle est la description pour cette {type} ?",
             "organization": "Quel est l'identifiant de domaine de ton organisation ?",
             "androidSupport": "Quel langage support veux-tu utiliser pour Android ?",
             "iosSupport": "Quel langage support veux-tu utiliser pour IOS ?"

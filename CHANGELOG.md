@@ -1,5 +1,9 @@
 # Release Notes
 
+## V1.4.0
+ * Update: Make karee compatible with last flutter version.
+ * Update: Karee CLI update - make generation of screens and controllers to custom path out of default dirs.   
+    - Karee ^2.2.4
 ## V1.3.11
  * Update: Update karee version. Adding routing context in activation function 
     - Karee ^2.2.3+4

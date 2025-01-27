@@ -76,8 +76,10 @@ class KareeInstaller extends CommandRunner {
             ((this.isModule) 
             ? (` && flutter pub add --path ${this.pathSeparator}${this.settings.appName} ${this.settings.appName}`)
             : ('')))
-        res.on('close', (status, signal)=>{
-            
+        
+        res
+            .on('close', (status, signal)=>{
+
             if(status == 0){
 
                 spinner.stop(false)

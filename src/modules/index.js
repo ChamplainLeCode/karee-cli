@@ -28,6 +28,8 @@ class KareeCommandConfig {
                         
                     },
                     controller: {
+                        description: 'Generate a new controller',
+                        alias: 'c'
                         
                     }
                 }

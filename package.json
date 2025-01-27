@@ -1,6 +1,6 @@
 {
   "name": "karee",
-  "version": "1.3.11",
+  "version": "1.4.0",
   "description": "Another way to build Flutter applications for mobile, web and desktop using Karee Architecture.",
   "main": "src/index.js",
   "bin": {
@@ -22,6 +22,9 @@
   "keywords": [
     "karee",
     "flutter",
+    "architecture",
+    "development",
+    "framework",
     "mvc",
     "Bixterprise"
   ],
