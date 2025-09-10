@@ -13,10 +13,10 @@ class KareeProjectConstants {
 
     static app_base_dir = `lib/app/`
     static controller_default_base_dir = `${KareeProjectConstants.app_base_dir}controllers`
-    static screens_default_base_dir = `${KareeProjectConstants.app_base_dir}screens` 
+    static screens_default_base_dir = `${KareeProjectConstants.app_base_dir}screens`
 
     static supportedModuleVersion = 'v1.0.0'
-    static supportedWpKareeCoreVersion  = 'v1.0.7+4'
+    static supportedWpKareeCoreVersion = 'v1.0.7+6'
 }
 
 module.exports = KareeProjectConstants

@@ -1,9 +1,9 @@
-const Yargs   = require('yargs');
+const Yargs = require('yargs');
 
 
-class KareeModule{
-     
-    use(command, params){
+class KareeModule {
+
+    use(command, params) {
         this.start(command, params);
     }
 }
@@ -11,11 +11,11 @@ class KareeCommandConfig {
 
     commandModule = {}
 
-    constructor(){
+    constructor() {
         this.config();
     }
 
-    config(){
+    config() {
         Yargs
             .command('create', 'Create a new Flutter project with MVC pattern using Karee')
             .command('generate', 'Generate a new screen or a new controller',
@@ -25,24 +25,23 @@ class KareeCommandConfig {
                         alias: 's',
                         choices: ['stateless', 'stateful', 'stl', 'stf'],
 
-                        
+
                     },
                     controller: {
                         description: 'Generate a new controller',
                         alias: 'c'
-                        
+
                     }
                 }
             )
     }
 
-    use(command, module){
+    use(command, module) {
         this.commandModule[command] = module
     }
 
-    launch(){
-        console.log(this.commandModule)
-        for( let command in this.commandModule)
+    launch() {
+        for (let command in this.commandModule)
             this.commandModule[command].launch()
     }
 }

@@ -1,28 +1,49 @@
 const io = require('../io/io');
 const exception = require('../tools/exception')
 
-
+/**
+ * This class is used to handle Karee configuration.
+ * It loads configuration from config/config.json file and provides
+ * methods to access and modify it.
+ */
 class KareeConfig {
+    /** 
+     * The language of the CLI
+     */
     lang = null
+    /**
+     * The json content of the config file
+     */
     json = {}
 
-    constructor(json){
+    constructor(json) {
         this.lang = json.lang
         this.json = json
     }
 
-    export(){
+    /**
+     * Export the current configuration to the config file
+     */
+    export() {
         io.writeFile(JSON.stringify(this.json), `${__dirname}/../config/config.json`)
     }
 }
 
+/**
+ * The global configuration instance
+ * @type {KareeConfig}
+ */
 const __config = new KareeConfig(io.readFile(`${__dirname}/../config/config.json`))
 
+/**
+ * This class is used to handle installation helper information
+ * loaded from lang/<lang>/messages.json file
+ * @class KareeInstallHelper
+ */
+class KareeInstallHelper {
 
-class KareeInstallHelper{
-    
-    android =  { supports: [] }
-    ios =      { supports: [] }
+    android = { supports: [] }
+    ios = { supports: [] }
     description = null
     organization = null
     type = []
@@ -36,11 +57,11 @@ class KareeInstallHelper{
         iosSupport: null
     }
 
-    constructor(json){
+    constructor(json) {
         this.android.supports = json.android.supports
         this.ios.supports = json.ios.supports
         this.description = json.description,
-        this.version = json.version
+            this.version = json.version
         this.organization = json.organization
         this.type = json.type
         this.questions.type = json.questions.type
@@ -53,10 +74,10 @@ class KareeInstallHelper{
     }
 }
 
-class KareeProjectConfig{
-    
-    appName =  { supports: [] }
-    settings =      { supports: [] }
+class KareeProjectConfig {
+
+    appName = { supports: [] }
+    settings = { supports: [] }
 
     static __file = 'karee_config.json'
     static __template_controller = 'templates/controller.template'
@@ -70,17 +91,17 @@ class KareeProjectConfig{
     static __template_module_route_declaration = 'templates/module_routes_declaration.template'
     static __template_analysis_options_config = 'templates/analysis_options.template'
 
-    
-    constructor(){
+
+    constructor() {
         this.load()
     }
 
-    load (){
-        if(io.exists(KareeProjectConfig.__file)){
+    load() {
+        if (io.exists(KareeProjectConfig.__file)) {
             let json = io.readFile(KareeProjectConfig.__file)
             this.appName = json.appName
             this.settings = json.config
-        }else{
+        } else {
             exception.notKareeProject();
         }
     }
@@ -88,7 +109,7 @@ class KareeProjectConfig{
 
 __json_helper = io.readFile(`${__dirname}/../lang/${__config.lang}/messages.json`)
 
-class KareeHelper{
+class KareeHelper {
 
     install = new KareeInstallHelper(__json_helper.install);
 
@@ -97,9 +118,9 @@ class KareeHelper{
 const __karee_helper = new KareeHelper()
 
 class CommandRunner {
-    launch(){
+    launch() {
         throw 'Not yet implements'
     }
 }
 
-module.exports = {__karee_helper, __config, CommandRunner, KareeProjectConfig};
+module.exports = { __karee_helper, __config, CommandRunner, KareeProjectConfig };

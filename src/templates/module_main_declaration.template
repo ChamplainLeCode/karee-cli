@@ -27,7 +27,7 @@ class MyKareeApp extends StatelessWidget {
   // static final appLanguage = Of(AppLanguage('en'));
   final sideMenuSelected = Of.tag(0, #sideMenu);
 
-  MyKareeApp({Key? key}) : super(key: key);
+  MyKareeApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +35,7 @@ class MyKareeApp extends StatelessWidget {
 
     return KareeMaterialApp(
         kind: ApplicationKind.material,
+        enableI18n: true,
         locale: Locale('fr'),
         supportedLocales: [Locale('en')],
         observables: [sideMenuSelected],
@@ -54,8 +55,6 @@ class MyKareeApp extends StatelessWidget {
           appSupportEmail: 'bncmarius@hotmail.com',
           appVersion: 'v9.0.3',
         ),
-        // locale: Locale('en'),
-        // supportedLocales: [Locale('en'), Locale('fr')],
         // This represents your app's title
         title: 'Karee Sample Module',
         debugShowCheckedModeBanner: false);

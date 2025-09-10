@@ -1,5 +1,8 @@
 # Release Notes
 
+## V1.4.1
+ * Update: Karee CLI update - create project with new configuration of i18n.   
+    - Karee ^2.2.6
 ## V1.4.0
  * Update: Make karee compatible with last flutter version.
  * Update: Karee CLI update - make generation of screens and controllers to custom path out of default dirs.   
